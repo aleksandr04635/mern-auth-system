@@ -7,6 +7,8 @@ import handleValidationErrors from "./middlewares/handleValidationErrors.js";
 import { UserController } from "./controllers/index.js";
 import isAuth from "./middlewares/isAuth.js";
 
+import { sen } from "./controllers/UserController.js"; //my
+
 dotenv.config();
 
 mongoose
@@ -19,9 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("res");
-}); //my
+app.get("/", sen); //my
 
 app.post(
   "/register",

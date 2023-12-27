@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useForm } from "react-hook-form"
-import { Button, TextField } from "@mui/material"
-import styles from "./AuthForm.module.scss"
-import { useDispatch } from "react-redux"
-import { login, registration } from "../../redux/slices/auth"
+import { useForm } from "react-hook-form";
+import { Button, TextField } from "@mui/material";
+import styles from "./AuthForm.module.scss";
+import { useDispatch } from "react-redux";
+import { login, registration } from "../../redux/slices/auth";
 
 const AuthForm = ({ formType, handleModalClose }) => {
-  const dispatch = useDispatch()
-  const isRegisterForm = formType === "register"
+  const dispatch = useDispatch();
+  const isRegisterForm = formType === "register";
 
   const {
     handleSubmit,
@@ -16,21 +16,21 @@ const AuthForm = ({ formType, handleModalClose }) => {
   } = useForm({
     defaultValues: { email: "", password: "" },
     mode: "onChange",
-  })
+  });
 
   const onSubmit = async (values) => {
-    console.log(values)
+    console.log("submited form values: ", values);
     const data = await dispatch(
       isRegisterForm ? registration(values) : login(values)
-    )
+    );
     if (!data.payload) {
-      return alert(`${isRegisterForm ? "Registration" : "Login"} failed!`)
+      return alert(`${isRegisterForm ? "Registration" : "Login"} failed!`);
     }
     if ("token" in data.payload) {
-      window.localStorage.setItem("token", data.payload.token)
+      window.localStorage.setItem("token", data.payload.token);
     }
-    handleModalClose()
-  }
+    handleModalClose();
+  };
 
   return (
     <>
@@ -57,7 +57,7 @@ const AuthForm = ({ formType, handleModalClose }) => {
         </Button>
       </form>
     </>
-  )
-}
+  );
+};
 
-export default AuthForm
+export default AuthForm;

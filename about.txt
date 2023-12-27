@@ -5,4 +5,5 @@ MERN logging form example, react-hook-form, redux-toolkit
 deployed to 
 server:
 https://mern-auth-system-backend.onrender.com/
-
+client:
+https://mern-auth-system-frontend.onrender.com
